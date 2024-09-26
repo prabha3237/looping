@@ -1,0 +1,39 @@
+..
+The rules for generating Collatz Sequence are:
+If n is even:   n = n / 2
+If n is odd:    n = 3n + 1
+For example, if the starting number is 5 the sequence is:
+5 -> 16 -> 8 -> 4 -> 2 -> 1
+It has been proved for almost all integers, the repeated application of the above rule will result in a sequence that ends at 1.
+Input format:
+The input containing an integer 'n' which denotes the given number
+Output format:
+Print the numbers in the sequence and also print the number of times the rule has to be applied in order to reach 1.
+Refer the sample output for formatting.
+..
+def collatz_sequence(n):
+    if n <= 0:
+        return "Input must be a positive integer."
+
+    sequence = []
+    steps = 0
+    
+    while n != 1:
+        sequence.append(n)
+        if n % 2 == 0:
+            n = n // 2  # n is even
+        else:
+            n = 3 * n + 1  # n is odd
+        steps += 1
+    
+    sequence.append(1)  # Append the last number, which is always 1
+    return sequence, steps
+n = int(input("Enter a positive integer: "))
+result, step_count = collatz_sequence(n)
+print("Collatz Sequence:", " -> ".join(map(str, result)))
+print("Number of steps:", step_count)
+..
+Enter a positive integer: 5
+Collatz Sequence: 5 -> 16 -> 8 -> 4 -> 2 -> 1
+Number of steps: 5
+..
